@@ -13,7 +13,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="17dp"
-        android:background="#2196F3"
         android:text="완       료"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
@@ -111,6 +110,79 @@
         app:layout_constraintTop_toBottomOf="@+id/btnList" />
 
     <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="2020/06/07"
+        android:inputType="date"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTime"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="18:10:35"
+        android:inputType="time"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/editTextDate"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:focusable="auto"
+        android:hint="0.5"
+        android:inputType="numberDecimal"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup7" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="32dp"
+        android:focusable="auto"
+        android:text="희석"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup7" />
+
+    <EditText
+        android:id="@+id/editTextNumber2"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:focusable="auto"
+        android:hint="20"
+        android:inputType="numberDecimal"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+
+    <EditText
         android:id="@+id/editTextTextMultiLine2"
         android:layout_width="250dp"
         android:layout_height="115dp"
@@ -148,6 +220,7 @@
             android:id="@+id/radioButton"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:focusable="auto"
             android:selectAllOnFocus="true"
             android:text="휴물린엔"
@@ -164,48 +237,6 @@
 
     </RadioGroup>
 
-    <EditText
-        android:id="@+id/editTextNumber2"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:focusable="auto"
-        android:hint="20"
-        android:inputType="numberDecimal"
-        android:textAlignment="textEnd"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
-
-    <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="18dp"
-        android:ems="10"
-        android:focusable="auto"
-        android:hint="0.5"
-        android:inputType="numberDecimal"
-        android:textAlignment="textEnd"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup7" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="32dp"
-        android:focusable="auto"
-        android:text="희석"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup7" />
-
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
@@ -214,34 +245,5 @@
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextNumber"
         app:layout_constraintStart_toEndOf="@+id/editTextNumber" />
-
-    <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:focusable="auto"
-        android:hint="18:10:35"
-        android:inputType="time"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/editTextDate"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:focusable="auto"
-        android:hint="2020/06/07"
-        android:inputType="date"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
