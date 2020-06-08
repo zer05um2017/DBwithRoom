@@ -11,18 +11,39 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.xml.datatype.DatatypeConstants.MONTHS
 
 class MainActivity : AppCompatActivity() {
+    var appDatabase: AppDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var appDatabase: AppDatabase? = null
         appDatabase = AppDatabase.getInstance(this)
+        this.setDataEventListener()
+        this.setDateTimeListener()
+        this.setCurrentDate()
+        this.setCurrentTime()
+    }
 
+    private fun setCurrentDate() {
+        val cal = Calendar.getInstance()
+        val myFormat = "M/dd/yyyy" // mention the format you needa
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        editTextDate.setText(sdf.format(cal.time))
+    }
+
+    private fun setCurrentTime() {
+        val cal = Calendar.getInstance()
+        val myFormat = "HH:mm" // mention the format you needa
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        editTextTime.setText(sdf.format(cal.time))
+    }
+
+    private fun setDataEventListener() {
         btnInsert.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 appDatabase?.userDao()?.insert(User(0, "엥", "휴"))
@@ -43,15 +64,9 @@ class MainActivity : AppCompatActivity() {
                 appDatabase?.userDao()?.deleteAll()
             }
         }
+    }
 
-//        editTextDate.setOnFocusChangeListener { view, hasFocus ->
-//            if(hasFocus)
-//                Toast.makeText(this@MainActivity, "focused", Toast.LENGTH_SHORT).show()
-//            else
-//                Toast.makeText(this@MainActivity, "focuse lose", Toast.LENGTH_SHORT).show()
-//
-//        }
-
+    private fun setDateTimeListener() {
         editTextDate.setOnTouchListener { _: View, event:MotionEvent ->
             when(event.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -60,13 +75,11 @@ class MainActivity : AppCompatActivity() {
                     val y = cal.get(Calendar.YEAR)
                     val m = cal.get(Calendar.MONTH)
                     val d = cal.get(Calendar.DAY_OF_MONTH)
-
-
                     val datepickerdialog:DatePickerDialog = DatePickerDialog(this@MainActivity, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-//                    Toast.makeText(this@MainActivity, "$dayOfMonth $monthOfYear, $year", Toast.LENGTH_SHORT).show()
-                        editTextDate.setText("$dayOfMonth $monthOfYear, $year")
-                        // Display Selected date in textbox
-//                        lblDate.setText("" + dayOfMonth + " " + MONTHS[monthOfYear] + ", " + year)
+                        val myFormat = "MM/dd/yyyy" // mention the format you needa
+                        val sdf = SimpleDateFormat(myFormat, Locale.US)
+                        cal.set(year, monthOfYear, dayOfMonth)
+                        editTextDate!!.setText(sdf.format(cal.time))
                     }, y, m, d)
 
                     datepickerdialog.show()
@@ -86,17 +99,22 @@ class MainActivity : AppCompatActivity() {
                     val mm=c.get(Calendar.MINUTE)
                     val timePickerDialog:TimePickerDialog=TimePickerDialog(this@MainActivity,
                         TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                            editTextTime.setText( ""+hourOfDay + ":" + minute);
-                    },hh,mm,true)
+                            editTextTime!!.setText( ""+hourOfDay + ":" + minute);
+                        },hh,mm,true)
                     timePickerDialog.show()
                     false
                 }
             }
-
             true
         }
 
-
+//        editTextDate.setOnFocusChangeListener { view, hasFocus ->
+//            if(hasFocus)
+//                Toast.makeText(this@MainActivity, "focused", Toast.LENGTH_SHORT).show()
+//            else
+//                Toast.makeText(this@MainActivity, "focuse lose", Toast.LENGTH_SHORT).show()
+//
+//        }
     }
 
     override fun onDestroy() {
